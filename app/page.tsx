@@ -5,6 +5,7 @@ import EmployeeStorageCard from './components/EmployeeStorageCard'
 import ArraysExerciseCard from './components/ArraysExerciseCard'
 import FavoriteRecordsCard from './components/FavoriteRecordsCard'
 import GarageManagerCard from './components/GarageManagerCard'
+import InheritanceCard from './components/InheritanceCard'
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
           <ArraysExerciseCard />
           <FavoriteRecordsCard />
           <GarageManagerCard />
+          <InheritanceCard />
         </div>
 
         {/* Footer */}
