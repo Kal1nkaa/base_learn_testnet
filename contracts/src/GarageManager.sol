@@ -5,17 +5,12 @@ contract GarageManager {
     // Custom error for invalid car index
     error BadCarIndex(uint256 index);
 
-    // Car struct definition - optimized for storage packing
-    // Fixed-size variables grouped together for optimal packing
+    // Car struct definition - matches exact test specification
     struct Car {
-        uint8 numberOfDoors;    // 1 byte - cars typically have 2-5 doors (0-255)
-        uint8 year;             // 1 byte - year (0-255, for years 2000-2255)
-        uint16 mileage;         // 2 bytes - mileage (0-65535)
-        // 28 bytes padding to align to 32-byte boundary
-        // Dynamic types stored separately (strings)
-        string make;            // Dynamic type - stored in separate storage slot
-        string model;           // Dynamic type - stored in separate storage slot  
-        string color;           // Dynamic type - stored in separate storage slot
+        string make;
+        string model;
+        string color;
+        uint numberOfDoors;     // Test expects uint, not uint8
     }
     
     // Alternative optimized struct for comparison (if we wanted fixed-size strings)
@@ -36,20 +31,16 @@ contract GarageManager {
 
     // Add a car to the caller's garage
     function addCar(
-        string memory _make,
-        string memory _model,
-        string memory _color,
-        uint8 _numberOfDoors,
-        uint8 _year,
-        uint16 _mileage
-    ) public {
+        string calldata _make,
+        string calldata _model,
+        string calldata _color,
+        uint _numberOfDoors
+    ) external {
         Car memory newCar = Car({
-            numberOfDoors: _numberOfDoors,
-            year: _year,
-            mileage: _mileage,
             make: _make,
             model: _model,
-            color: _color
+            color: _color,
+            numberOfDoors: _numberOfDoors
         });
         
         garage[msg.sender].push(newCar);
@@ -69,14 +60,12 @@ contract GarageManager {
 
     // Update an existing car at the given index
     function updateCar(
-        uint256 _index,
-        string memory _make,
-        string memory _model,
-        string memory _color,
-        uint8 _numberOfDoors,
-        uint8 _year,
-        uint16 _mileage
-    ) public {
+        uint _index,
+        string calldata _make,
+        string calldata _model,
+        string calldata _color,
+        uint _numberOfDoors
+    ) external {
         Car[] storage userCars = garage[msg.sender];
         
         // Check if the index is valid
@@ -86,19 +75,17 @@ contract GarageManager {
         
         // Update the car
         userCars[_index] = Car({
-            numberOfDoors: _numberOfDoors,
-            year: _year,
-            mileage: _mileage,
             make: _make,
             model: _model,
-            color: _color
+            color: _color,
+            numberOfDoors: _numberOfDoors
         });
         
         emit CarUpdated(msg.sender, _index, _make, _model);
     }
 
     // Reset the caller's garage (delete all cars)
-    function resetMyGarage() public {
+    function resetMyGarage() external {
         uint256 carsRemoved = garage[msg.sender].length;
         delete garage[msg.sender];
         

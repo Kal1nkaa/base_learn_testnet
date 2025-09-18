@@ -17,7 +17,7 @@ contract GarageManagerTest is Test {
         string make;
         string model;
         string color;
-        uint8 numberOfDoors;
+        uint numberOfDoors;
     }
 
     TestCar[] testCars;
@@ -45,7 +45,7 @@ contract GarageManagerTest is Test {
 
     function testAddSingleCar() public {
         vm.prank(alice);
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000); // year: 2020-2000=20
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
         
         assertEq(garageManager.getUserCarCount(alice), 1);
         assertTrue(garageManager.hasAnyCars(alice));
@@ -56,8 +56,6 @@ contract GarageManagerTest is Test {
         assertEq(aliceCars[0].model, "Camry");
         assertEq(aliceCars[0].color, "Blue");
         assertEq(aliceCars[0].numberOfDoors, 4);
-        assertEq(aliceCars[0].year, 20); // 2020 - 2000 = 20
-        assertEq(aliceCars[0].mileage, 50000);
     }
 
     function testAddMultipleCars() public {
@@ -90,7 +88,7 @@ contract GarageManagerTest is Test {
 
     function testGetMyCars() public {
         vm.prank(alice);
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
         
         vm.prank(alice);
         GarageManager.Car[] memory myCars = garageManager.getMyCars();
@@ -102,7 +100,7 @@ contract GarageManagerTest is Test {
 
     function testGetUserCars() public {
         vm.prank(alice);
-        garageManager.addCar("Honda", "Civic", "Red", 4, 18, 75000);
+        garageManager.addCar("Honda", "Civic", "Red", 4);
         
         // Anyone can view Alice's cars
         GarageManager.Car[] memory aliceCars = garageManager.getUserCars(alice);
@@ -114,11 +112,11 @@ contract GarageManagerTest is Test {
     function testMultipleUsersIndependentGarages() public {
         // Alice adds a car
         vm.prank(alice);
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
         
         // Bob adds a different car
         vm.prank(bob);
-        garageManager.addCar("Honda", "Civic", "Red", 4, 18, 75000);
+        garageManager.addCar("Honda", "Civic", "Red", 4);
         
         // Charlie adds no cars
         
@@ -140,7 +138,7 @@ contract GarageManagerTest is Test {
         vm.startPrank(alice);
         
         // Add initial car
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
         
         // Update the car
         garageManager.updateCar(0, "Toyota", "Prius", "Green", 4);
@@ -158,7 +156,7 @@ contract GarageManagerTest is Test {
         vm.startPrank(alice);
         
         // Add one car
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
         
         // Try to update index 1 (should fail since we only have index 0)
         vm.expectRevert(abi.encodeWithSelector(GarageManager.BadCarIndex.selector, 1));
@@ -178,9 +176,9 @@ contract GarageManagerTest is Test {
         vm.startPrank(alice);
         
         // Add multiple cars
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
-        garageManager.addCar("Honda", "Civic", "Red", 4, 18, 75000);
-        garageManager.addCar("Ford", "Mustang", "Yellow", 2, 22, 25000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
+        garageManager.addCar("Honda", "Civic", "Red", 4);
+        garageManager.addCar("Ford", "Mustang", "Yellow", 2);
         
         // Verify cars were added
         assertEq(garageManager.getMyCarCount(), 3);
@@ -201,11 +199,11 @@ contract GarageManagerTest is Test {
     function testResetDoesNotAffectOtherUsers() public {
         // Alice adds cars
         vm.prank(alice);
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
         
         // Bob adds cars
         vm.prank(bob);
-        garageManager.addCar("Honda", "Civic", "Red", 4, 18, 75000);
+        garageManager.addCar("Honda", "Civic", "Red", 4);
         
         // Alice resets her garage
         vm.prank(alice);
@@ -222,7 +220,7 @@ contract GarageManagerTest is Test {
     function testGetMyCarFunction() public {
         vm.startPrank(alice);
         
-        garageManager.addCar("Tesla", "Model S", "Black", 4, 23, 30000);
+        garageManager.addCar("Tesla", "Model S", "Black", 4);
         
         GarageManager.Car memory myCar = garageManager.getMyCar(0);
         assertEq(myCar.make, "Tesla");
@@ -241,7 +239,7 @@ contract GarageManagerTest is Test {
 
     function testGetUserCarFunction() public {
         vm.prank(alice);
-        garageManager.addCar("BMW", "X5", "White", 4, 21, 40000);
+        garageManager.addCar("BMW", "X5", "White", 4);
         
         GarageManager.Car memory aliceCar = garageManager.getUserCar(alice, 0);
         assertEq(aliceCar.make, "BMW");
@@ -254,9 +252,9 @@ contract GarageManagerTest is Test {
         vm.startPrank(alice);
         
         // Add three cars
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
-        garageManager.addCar("Honda", "Civic", "Red", 4, 18, 75000);
-        garageManager.addCar("Ford", "Mustang", "Yellow", 2, 22, 25000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
+        garageManager.addCar("Honda", "Civic", "Red", 4);
+        garageManager.addCar("Ford", "Mustang", "Yellow", 2);
         
         assertEq(garageManager.getMyCarCount(), 3);
         
@@ -287,9 +285,9 @@ contract GarageManagerTest is Test {
     function testGetUserCarMakes() public {
         vm.startPrank(alice);
         
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
-        garageManager.addCar("Honda", "Civic", "Red", 4, 18, 75000);
-        garageManager.addCar("Toyota", "Prius", "Green", 4, 19, 60000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
+        garageManager.addCar("Honda", "Civic", "Red", 4);
+        garageManager.addCar("Toyota", "Prius", "Green", 4);
         
         vm.stopPrank();
         
@@ -303,11 +301,11 @@ contract GarageManagerTest is Test {
     function testGetCarsByMake() public {
         vm.startPrank(alice);
         
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
-        garageManager.addCar("Honda", "Civic", "Red", 4, 18, 75000);
-        garageManager.addCar("Toyota", "Prius", "Green", 4, 19, 60000);
-        garageManager.addCar("Ford", "Mustang", "Yellow", 2, 22, 25000);
-        garageManager.addCar("Toyota", "Corolla", "Silver", 4, 20, 45000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
+        garageManager.addCar("Honda", "Civic", "Red", 4);
+        garageManager.addCar("Toyota", "Prius", "Green", 4);
+        garageManager.addCar("Ford", "Mustang", "Yellow", 2);
+        garageManager.addCar("Toyota", "Corolla", "Silver", 4);
         
         vm.stopPrank();
         
@@ -329,7 +327,7 @@ contract GarageManagerTest is Test {
 
     function testGetCarsByMakeNotFound() public {
         vm.prank(alice);
-        garageManager.addCar("Toyota", "Camry", "Blue", 4, 20, 50000);
+        garageManager.addCar("Toyota", "Camry", "Blue", 4);
         
         (GarageManager.Car[] memory cars, uint256[] memory indices) = garageManager.getCarsByMake(alice, "Ferrari");
         
@@ -341,7 +339,7 @@ contract GarageManagerTest is Test {
         vm.startPrank(alice);
         
         // Test edge cases for number of doors
-        garageManager.addCar("Smart", "ForTwo", "Red", 2, 17, 80000);  // 2 doors
+        garageManager.addCar("Smart", "ForTwo", "Red", 2);  // 2 doors
         garageManager.addCar("McLaren", "P1", "Orange", 2); // 2 doors (sports car)
         
         GarageManager.Car[] memory cars = garageManager.getMyCars();
@@ -373,7 +371,7 @@ contract GarageManagerTest is Test {
     function testCarStructPacking() public {
         // This test verifies that the struct is properly handled
         vm.startPrank(alice);
-        garageManager.addCar("Test", "Car", "Blue", 255); // Max uint8 value
+        garageManager.addCar("Test", "Car", "Blue", 255); // Test value
         
         GarageManager.Car memory car = garageManager.getMyCar(0);
         assertEq(car.numberOfDoors, 255);
