@@ -3,6 +3,7 @@ import BasicMathCard from './components/BasicMathCard'
 import ControlStructuresCard from './components/ControlStructuresCard'
 import EmployeeStorageCard from './components/EmployeeStorageCard'
 import ArraysExerciseCard from './components/ArraysExerciseCard'
+import FavoriteRecordsCard from './components/FavoriteRecordsCard'
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
           <ControlStructuresCard />
           <EmployeeStorageCard />
           <ArraysExerciseCard />
+          <FavoriteRecordsCard />
         </div>
 
         {/* Footer */}
