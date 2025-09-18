@@ -46,7 +46,7 @@ export default function BasicMathCard() {
           address: BASIC_MATH_ADDRESS,
           abi: BASIC_MATH_ABI,
           functionName: operation === 'add' ? 'adder' : 'subtractor',
-          args: [a, b]
+          args: [a.toString(), b.toString()]
         })
       })
       

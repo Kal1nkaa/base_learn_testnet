@@ -11,14 +11,40 @@ export async function POST(request: NextRequest) {
   try {
     const { address, abi, functionName, args } = await request.json()
 
+    // Convert string arguments back to BigInt for contract calls
+    const processedArgs = args.map((arg: any) => {
+      if (typeof arg === 'string' && /^\d+$/.test(arg)) {
+        return BigInt(arg)
+      }
+      return arg
+    })
+
     const result = await publicClient.readContract({
       address,
       abi,
       functionName,
-      args
+      args: processedArgs
     })
 
-    return NextResponse.json({ success: true, result })
+    // Convert BigInt results to strings for JSON serialization
+    const processResult = (data: any): any => {
+      if (typeof data === 'bigint') {
+        return data.toString()
+      }
+      if (Array.isArray(data)) {
+        return data.map(processResult)
+      }
+      if (data && typeof data === 'object') {
+        const processed: any = {}
+        for (const [key, value] of Object.entries(data)) {
+          processed[key] = processResult(value)
+        }
+        return processed
+      }
+      return data
+    }
+
+    return NextResponse.json({ success: true, result: processResult(result) })
   } catch (error: any) {
     console.error('Contract call error:', error)
     return NextResponse.json({ 

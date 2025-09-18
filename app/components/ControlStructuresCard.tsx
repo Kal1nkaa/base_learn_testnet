@@ -45,7 +45,7 @@ export default function ControlStructuresCard() {
           address: CONTROL_STRUCTURES_ADDRESS,
           abi: CONTROL_STRUCTURES_ABI,
           functionName: 'fizzBuzz',
-          args: [number]
+          args: [number.toString()]
         })
       })
       
@@ -79,7 +79,7 @@ export default function ControlStructuresCard() {
           address: CONTROL_STRUCTURES_ADDRESS,
           abi: CONTROL_STRUCTURES_ABI,
           functionName: 'doNotDisturb',
-          args: [time]
+          args: [time.toString()]
         })
       })
       
