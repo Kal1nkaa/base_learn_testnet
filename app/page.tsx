@@ -1,12 +1,38 @@
+import WalletConnection from './components/WalletConnection'
 import BasicMathCard from './components/BasicMathCard'
+import ControlStructuresCard from './components/ControlStructuresCard'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className="text-4xl font-bold text-center mb-8">Basic Math Exercise</h1>
-        <BasicMathCard />
-      </div>
-    </main>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <main className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-5xl font-bold text-gray-800 mb-4">
+            🚀 Base Smart Contracts
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Interact with deployed smart contracts on Base Sepolia testnet. 
+            Connect your wallet to test BasicMath and ControlStructures functions.
+          </p>
+        </div>
+
+        {/* Wallet Connection */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <WalletConnection />
+        </div>
+
+        {/* Contract Interaction Cards */}
+        <div className="max-w-6xl mx-auto space-y-8">
+          <BasicMathCard />
+          <ControlStructuresCard />
+        </div>
+
+        {/* Footer */}
+        <footer className="text-center mt-12 text-gray-500">
+          <p>Built with Next.js, Wagmi, and Reown AppKit on Base Sepolia</p>
+        </footer>
+      </main>
+    </div>
   )
 }

@@ -3,9 +3,9 @@
 import React, { type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createAppKit } from '@reown/appkit/react';
-import { base } from '@reown/appkit/networks';
+import { base, baseSepolia } from '@reown/appkit/networks';
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi';
-import { wagmiAdapter, projectId } from '@/config';
+import { wagmiAdapter, projectId, networks } from '@/config';
 
 const queryClient = new QueryClient();
 
@@ -23,8 +23,8 @@ const metadata = {
 createAppKit({
   adapters: [wagmiAdapter],
   projectId,
-  networks: [base],
-  defaultNetwork: base,
+  networks: networks,
+  defaultNetwork: baseSepolia,
   metadata,
   features: {
     analytics: true,
