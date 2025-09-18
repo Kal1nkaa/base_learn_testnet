@@ -1,17 +1,30 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 contract GarageManager {
     // Custom error for invalid car index
     error BadCarIndex(uint256 index);
 
-    // Car struct definition
+    // Car struct definition - optimized for storage packing
+    // Fixed-size variables grouped together for optimal packing
     struct Car {
-        string make;
-        string model;
-        string color;
-        uint8 numberOfDoors; // Using uint8 for gas optimization (1-5 doors typical)
+        uint8 numberOfDoors;    // 1 byte - cars typically have 2-5 doors (0-255)
+        uint8 year;             // 1 byte - year (0-255, for years 2000-2255)
+        uint16 mileage;         // 2 bytes - mileage (0-65535)
+        // 28 bytes padding to align to 32-byte boundary
+        // Dynamic types stored separately (strings)
+        string make;            // Dynamic type - stored in separate storage slot
+        string model;           // Dynamic type - stored in separate storage slot  
+        string color;           // Dynamic type - stored in separate storage slot
     }
+    
+    // Alternative optimized struct for comparison (if we wanted fixed-size strings)
+    // struct CarOptimized {
+    //     uint8 numberOfDoors;  // 1 byte
+    //     bytes32 make;         // 32 bytes - fixed size, more gas efficient for short strings
+    //     bytes32 model;        // 32 bytes - fixed size, more gas efficient for short strings
+    //     bytes32 color;        // 32 bytes - fixed size, more gas efficient for short strings
+    // }
 
     // Public mapping to store each user's garage (array of cars)
     mapping(address => Car[]) public garage;
@@ -26,13 +39,17 @@ contract GarageManager {
         string memory _make,
         string memory _model,
         string memory _color,
-        uint8 _numberOfDoors
+        uint8 _numberOfDoors,
+        uint8 _year,
+        uint16 _mileage
     ) public {
         Car memory newCar = Car({
+            numberOfDoors: _numberOfDoors,
+            year: _year,
+            mileage: _mileage,
             make: _make,
             model: _model,
-            color: _color,
-            numberOfDoors: _numberOfDoors
+            color: _color
         });
         
         garage[msg.sender].push(newCar);
@@ -56,7 +73,9 @@ contract GarageManager {
         string memory _make,
         string memory _model,
         string memory _color,
-        uint8 _numberOfDoors
+        uint8 _numberOfDoors,
+        uint8 _year,
+        uint16 _mileage
     ) public {
         Car[] storage userCars = garage[msg.sender];
         
@@ -67,10 +86,12 @@ contract GarageManager {
         
         // Update the car
         userCars[_index] = Car({
+            numberOfDoors: _numberOfDoors,
+            year: _year,
+            mileage: _mileage,
             make: _make,
             model: _model,
-            color: _color,
-            numberOfDoors: _numberOfDoors
+            color: _color
         });
         
         emit CarUpdated(msg.sender, _index, _make, _model);

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
-import {Script} from "forge-std/Script.sol";
+import {Script, console} from "forge-std/Script.sol";
 import {GarageManager} from "../src/GarageManager.sol";
 
 contract GarageManagerScript is Script {
@@ -10,7 +10,10 @@ contract GarageManagerScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         // Deploy the GarageManager contract
-        new GarageManager();
+        GarageManager garageManager = new GarageManager();
+        
+        console.log("GarageManager deployed to:", address(garageManager));
+        console.log("Contract optimized for storage packing");
 
         vm.stopBroadcast();
     }

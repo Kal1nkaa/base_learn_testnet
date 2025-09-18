@@ -3,6 +3,11 @@ import BasicMathCard from './components/BasicMathCard'
 import ControlStructuresCard from './components/ControlStructuresCard'
 import EmployeeStorageCard from './components/EmployeeStorageCard'
 import ArraysExerciseCard from './components/ArraysExerciseCard'
+import ErrorTriageExerciseCard from './components/ErrorTriageExerciseCard'
+import AddressBookCard from './components/AddressBookCard'
+import UnburnableTokenCard from './components/UnburnableTokenCard'
+import WeightedVotingCard from './components/WeightedVotingCard'
+import HaikuNFTCard from './components/HaikuNFTCard'
 import FavoriteRecordsCard from './components/FavoriteRecordsCard'
 import GarageManagerCard from './components/GarageManagerCard'
 import InheritanceCard from './components/InheritanceCard'
@@ -34,6 +39,11 @@ export default function Home() {
           <ControlStructuresCard />
           <EmployeeStorageCard />
           <ArraysExerciseCard />
+          <ErrorTriageExerciseCard />
+          <AddressBookCard />
+          <UnburnableTokenCard />
+          <WeightedVotingCard />
+          <HaikuNFTCard />
           <FavoriteRecordsCard />
           <GarageManagerCard />
           <InheritanceCard />

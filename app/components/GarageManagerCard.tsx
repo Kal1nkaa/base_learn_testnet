@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 
-const GARAGE_MANAGER_ADDRESS = '0x8cf527ee9e7f83698c3289259ec036bdf9d1d98c' as const
+const GARAGE_MANAGER_ADDRESS = '0x0AF3Cb9B2da3Bd9b77DA552774a88B956c1b09Ab' as const
 const GARAGE_MANAGER_ABI = [
   {
     "inputs": [{"internalType": "uint256", "name": "index", "type": "uint256"}],
