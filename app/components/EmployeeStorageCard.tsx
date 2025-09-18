@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 
-const EMPLOYEE_STORAGE_ADDRESS = '0x6eceb5b9d793339a89b0ffbaf7709995041e502d' as const
+const EMPLOYEE_STORAGE_ADDRESS = '0xb15DFAce780Ad3698Af7FCa43efb7088081F57AC' as const
 const EMPLOYEE_STORAGE_ABI = [
   {
     "inputs": [],

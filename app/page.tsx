@@ -23,8 +23,8 @@ export default function Home() {
             🚀 Base Smart Contracts
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Interact with deployed smart contracts on Base Sepolia testnet. 
-            Connect your wallet to test BasicMath and ControlStructures functions.
+            Interact with deployed smart contracts on Base Mainnet. 
+            Connect your wallet to interact with all deployed contracts.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="text-center mt-12 text-gray-500">
-          <p>Built with Next.js, Wagmi, and Reown AppKit on Base Sepolia</p>
+          <p>Built with Next.js, Wagmi, and Reown AppKit on Base Mainnet</p>
         </footer>
       </main>
     </div>

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useAccount, useReadContract } from 'wagmi'
 import { parseUnits } from 'viem'
 
-const BASIC_MATH_ADDRESS = '0x77Dfbb2e5bC510F5f8d20A9204e91F963282d61f' as const
+const BASIC_MATH_ADDRESS = '0x2a50A417ee05D7527787C9f5ED7657CF9DaD3BFB' as const
 const BASIC_MATH_ABI = [
   {
     "inputs": [{"internalType": "uint256", "name": "_a", "type": "uint256"}, {"internalType": "uint256", "name": "_b", "type": "uint256"}],

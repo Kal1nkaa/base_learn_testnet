@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount } from 'wagmi'
 
-// TODO: Replace with actual deployed contract address
-const HAIKU_NFT_ADDRESS = '0x7315785A24FDac7121d63653158B9855579fC40b' as const
+const HAIKU_NFT_ADDRESS = '0xe3c55ce0c0483564BD8a3caF09E3245bF9e54322' as const
 
 const HAIKU_NFT_ABI = [
   {

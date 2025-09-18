@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 
-const ARRAYS_EXERCISE_ADDRESS = '0x2a71f0eb0fb5642c72de827e4d08fe25a8204086' as const
+const ARRAYS_EXERCISE_ADDRESS = '0x1a9C2FEE63A0E26301eE0F2B514784E56B542e29' as const
 const ARRAYS_EXERCISE_ABI = [
   {
     "inputs": [],

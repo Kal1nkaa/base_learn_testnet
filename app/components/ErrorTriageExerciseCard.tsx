@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 
-// TODO: Replace with actual deployed contract address
-const ERROR_TRIAGE_ADDRESS = '0xd11365F6608668Eb8b7E81cA749dcFeabea4efeB' as const
+const ERROR_TRIAGE_ADDRESS = '0xC3544f55b9d2174fe781703F94C0a724a959f5c2' as const
 const ERROR_TRIAGE_ABI = [
   {
     "inputs": [

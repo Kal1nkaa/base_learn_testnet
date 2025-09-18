@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 
-const FAVORITE_RECORDS_ADDRESS = '0xb80674ba5c5a61dd2d046452d2baf43278baf3eb' as const
+const FAVORITE_RECORDS_ADDRESS = '0x3987c887A89169C5e532476b618A96C5D11e5C76' as const
 const FAVORITE_RECORDS_ABI = [
   {
     "inputs": [],

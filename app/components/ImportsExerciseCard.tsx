@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 
-const IMPORTS_EXERCISE_ADDRESS = '0xDF4Fbd753e72c40dEdF66Be68bbF2CEaC282E28f' as const
+const IMPORTS_EXERCISE_ADDRESS = '0x63E8c947Ff8232c4e7FF0e737468525786c64962' as const
 
 const IMPORTS_EXERCISE_ABI = [
   {

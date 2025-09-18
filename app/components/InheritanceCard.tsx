@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 
 // Contract addresses from deployment
-const SALESPERSON_ADDRESS = '0xaf78dd933c7b1dc30ca8cd708bccb3bd5a9d12aa' as const
-const ENGINEERING_MANAGER_ADDRESS = '0x3ad53049dc7e424978906212de85038b849f3bcd' as const
-const INHERITANCE_SUBMISSION_ADDRESS = '0xc151c006e93e3736d63227e99b52eead6fa8fb9e' as const
+const SALESPERSON_ADDRESS = '0x63Da6394Af85FB9AbC11855B7cafb7e492fF4239' as const
+const ENGINEERING_MANAGER_ADDRESS = '0x0Be3160A6d0bc6998F33b38BE85E14bcc4a1b4B2' as const
+const INHERITANCE_SUBMISSION_ADDRESS = '0x2eB3b88b4207C47bf9dF386D033A44F1EcEd8071' as const
 
 // ABIs for the contracts
 const EMPLOYEE_ABI = [

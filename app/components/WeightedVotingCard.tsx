@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount } from 'wagmi'
 
-// TODO: Replace with actual deployed contract address
-const WEIGHTED_VOTING_ADDRESS = '0xa3E3f539f0Ae7c278D870C0C671A8d4Fba322d1e' as const
+const WEIGHTED_VOTING_ADDRESS = '0x5782C363c12f4A486d3e9e0284441A0AEc69fa03' as const
 
 const WEIGHTED_VOTING_ABI = [
   {

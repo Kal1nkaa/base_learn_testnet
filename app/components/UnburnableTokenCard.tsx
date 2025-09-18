@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount } from 'wagmi'
 
-// TODO: Replace with actual deployed contract address
-const UNBURNABLE_TOKEN_ADDRESS = '0xF29b1FaAB24FF8681D909f26FC9b36E3D6d21d73' as const
+const UNBURNABLE_TOKEN_ADDRESS = '0x86F7aB4327a4E0984f8eAD39d765FeeaCdAF4757' as const
 
 const UNBURNABLE_TOKEN_ABI = [
   {

@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 
-// TODO: Replace with actual deployed contract address
-const ADDRESS_BOOK_FACTORY_ADDRESS = '0xe48d2B536baf36af3a6b26C8223A39F970f6dfb5' as const
+const ADDRESS_BOOK_FACTORY_ADDRESS = '0x3D2C2Ae27Aa7760adD64073717341547541E4c2e' as const
 
 const ADDRESS_BOOK_FACTORY_ABI = [
   {

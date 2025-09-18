@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 
-const CONTROL_STRUCTURES_ADDRESS = '0xf1f33d79c7a813bf795657d0e5685a8b2bcee854' as const
+const CONTROL_STRUCTURES_ADDRESS = '0xaB6B6c13Fd72A92D27096d779F8188F85F4bb5Be' as const
 const CONTROL_STRUCTURES_ABI = [
   {
     "inputs": [{"internalType": "uint256", "name": "_number", "type": "uint256"}],
