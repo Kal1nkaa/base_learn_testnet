@@ -24,7 +24,7 @@ createAppKit({
   adapters: [wagmiAdapter],
   projectId,
   networks: networks,
-  defaultNetwork: baseSepolia,
+  defaultNetwork: base,
   metadata,
   features: {
     analytics: true,

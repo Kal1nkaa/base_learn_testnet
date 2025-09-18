@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAccount, useReadContract } from 'wagmi'
 import { parseUnits } from 'viem'
 
@@ -28,46 +28,44 @@ export default function BasicMathCard() {
   const [inputB, setInputB] = useState('')
   const [result, setResult] = useState<{ value: string; error: boolean; operation: string } | null>(null)
   const [operation, setOperation] = useState<'add' | 'subtract'>('add')
-  const [isCalculating, setIsCalculating] = useState(false)
+  const [shouldCalculate, setShouldCalculate] = useState(false)
 
-  const handleCalculate = async () => {
-    if (!inputA || !inputB || !isConnected) return
-
-    setIsCalculating(true)
-    try {
-      const a = BigInt(inputA)
-      const b = BigInt(inputB)
-      
-      // Call the smart contract function
-      const contractResult = await fetch('/api/contract-call', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          address: BASIC_MATH_ADDRESS,
-          abi: BASIC_MATH_ABI,
-          functionName: operation === 'add' ? 'adder' : 'subtractor',
-          args: [a.toString(), b.toString()]
-        })
-      })
-      
-      const data = await contractResult.json()
-      
-      if (data.success) {
-        const [value, error] = data.result
-        setResult({ 
-          value: value.toString(), 
-          error: error, 
-          operation: operation === 'add' ? 'Addition' : 'Subtraction'
-        })
-      } else {
-        throw new Error(data.error)
-      }
-    } catch (error) {
-      console.error('Contract call error:', error)
-      setResult({ value: '0', error: true, operation: operation === 'add' ? 'Addition' : 'Subtraction' })
-    } finally {
-      setIsCalculating(false)
+  // Use wagmi's useReadContract hook for better performance and rate limiting
+  const { data: contractData, isLoading: isCalculating, error: contractError } = useReadContract({
+    address: shouldCalculate && inputA && inputB ? BASIC_MATH_ADDRESS : undefined,
+    abi: BASIC_MATH_ABI,
+    functionName: operation === 'add' ? 'adder' : 'subtractor',
+    args: shouldCalculate && inputA && inputB ? [BigInt(inputA), BigInt(inputB)] : undefined,
+    query: {
+      enabled: shouldCalculate && !!inputA && !!inputB && isConnected,
     }
+  })
+
+  // Update result when contract data changes
+  useEffect(() => {
+    if (contractData && shouldCalculate) {
+      const [value, error] = contractData as [bigint, boolean]
+      setResult({ 
+        value: value.toString(), 
+        error: error, 
+        operation: operation === 'add' ? 'Addition' : 'Subtraction'
+      })
+      setShouldCalculate(false)
+    }
+  }, [contractData, shouldCalculate, operation])
+
+  // Handle contract errors
+  useEffect(() => {
+    if (contractError && shouldCalculate) {
+      console.error('Contract call error:', contractError)
+      setResult({ value: '0', error: true, operation: operation === 'add' ? 'Addition' : 'Subtraction' })
+      setShouldCalculate(false)
+    }
+  }, [contractError, shouldCalculate, operation])
+
+  const handleCalculate = () => {
+    if (!inputA || !inputB || !isConnected) return
+    setShouldCalculate(true)
   }
 
   return (
@@ -76,7 +74,7 @@ export default function BasicMathCard() {
         <h2 className="text-2xl font-bold text-gray-800">BasicMath Contract</h2>
         <div className="text-sm text-gray-500">
           <p>Contract: {BASIC_MATH_ADDRESS.slice(0, 6)}...{BASIC_MATH_ADDRESS.slice(-4)}</p>
-          <p>Network: Base Sepolia</p>
+          <p>Network: Base Mainnet</p>
         </div>
       </div>
       
