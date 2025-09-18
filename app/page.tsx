@@ -1,6 +1,7 @@
 import WalletConnection from './components/WalletConnection'
 import BasicMathCard from './components/BasicMathCard'
 import ControlStructuresCard from './components/ControlStructuresCard'
+import EmployeeStorageCard from './components/EmployeeStorageCard'
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto space-y-8">
           <BasicMathCard />
           <ControlStructuresCard />
+          <EmployeeStorageCard />
         </div>
 
         {/* Footer */}
