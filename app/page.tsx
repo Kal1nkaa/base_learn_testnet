@@ -2,6 +2,7 @@ import WalletConnection from './components/WalletConnection'
 import BasicMathCard from './components/BasicMathCard'
 import ControlStructuresCard from './components/ControlStructuresCard'
 import EmployeeStorageCard from './components/EmployeeStorageCard'
+import ArraysExerciseCard from './components/ArraysExerciseCard'
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
           <BasicMathCard />
           <ControlStructuresCard />
           <EmployeeStorageCard />
+          <ArraysExerciseCard />
         </div>
 
         {/* Footer */}
