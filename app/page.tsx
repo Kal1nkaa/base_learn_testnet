@@ -6,6 +6,7 @@ import ArraysExerciseCard from './components/ArraysExerciseCard'
 import FavoriteRecordsCard from './components/FavoriteRecordsCard'
 import GarageManagerCard from './components/GarageManagerCard'
 import InheritanceCard from './components/InheritanceCard'
+import ImportsExerciseCard from './components/ImportsExerciseCard'
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
           <FavoriteRecordsCard />
           <GarageManagerCard />
           <InheritanceCard />
+          <ImportsExerciseCard />
         </div>
 
         {/* Footer */}
