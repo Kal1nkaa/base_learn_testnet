@@ -1,13 +1,3 @@
-# 🏗️ Base Smart Contracts Learning Hub
-
-[![Base](https://img.shields.io/badge/Base-Mainnet-blue)](https://base.org)
-[![Base Sepolia](https://img.shields.io/badge/Base-Sepolia-green)](https://sepolia.base.org)
-[![WalletConnect](https://img.shields.io/badge/WalletConnect-Integrated-orange)](https://walletconnect.com)
-[![Reown AppKit](https://img.shields.io/badge/Reown-AppKit-purple)](https://reown.com)
-[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org)
-[![Foundry](https://img.shields.io/badge/Foundry-Framework-red)](https://getfoundry.sh)
-
-> **Learn smart contract development through hands-on interaction with 15+ deployed contracts on Base blockchain**
 
 ## 📖 What is This?
 
